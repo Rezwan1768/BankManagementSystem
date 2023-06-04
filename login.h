@@ -3,5 +3,5 @@
 
 bool userExists(const std::string& username);
 void registerUser();
-bool login();
+bool login(std::string& username);
 #endif

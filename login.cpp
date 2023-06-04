@@ -34,7 +34,7 @@ void registerUser()
     cin >> password;
     cout << "Email: ";
     cin >> email;
-    cout << "\n\n";
+    cout << '\n';
     while (userExists(username))
     {
         cout << "Username is in use!\n";
@@ -62,10 +62,10 @@ void registerUser()
     delete stmt;
 }
 
-bool login()
+bool login(std::string& username)
 {
     using namespace sqlCon;
-    std::string username{}, password{};
+    std::string password{};
     cout << "Username: ";
     std::cin >> username;
     cout << "Password: ";
@@ -76,13 +76,16 @@ bool login()
     sql::ResultSet* result = stmt->executeQuery(selectQuery); //look for matching values
     if (result->next())  //if resultset has any values
     {
+        std::system("CLS"); //Clear screen 
         cout << "Authentication successful. Username and password match.\n\n";
         delete result;
+        delete stmt;
         return true;
     }
     else {
         cout << "Authentication failed. Username and password do not match.\n\n";
         delete result;
+        delete stmt;
         return false;
     }
 }

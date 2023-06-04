@@ -24,7 +24,7 @@ void setUp()
     con->setSchema("bank_manager");
 
     stmt = con->createStatement();
-    //stmt->execute("DROP TABLE IF EXISTS users");  //Drop table if it already exists
-    //stmt->execute("CREATE TABLE users (username VARCHAR(30) PRIMARY KEY, email VARCHAR(50), password VARCHAR(50),  balance INTEGER)");
+    stmt->execute("DROP TABLE IF EXISTS users");  //Drop table if it already exists
+    stmt->execute("CREATE TABLE users (username VARCHAR(30) PRIMARY KEY, email VARCHAR(50), password VARCHAR(50),  balance INTEGER DEFAULT 0)");
     delete stmt;
 }
