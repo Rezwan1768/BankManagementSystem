@@ -28,10 +28,20 @@ void registerUser()
 {
     using namespace sqlCon;
     std::string username{}, password{}, email{};
-    cout << "Username: ";
-    cin >> username;
-    cout << "Password: ";
-    cin >> password;
+    do{
+        cout << "Username: ";
+        cin >> username;
+        if (!(username.length() >= 5 && username.length() <= 15))
+            std::cout << "Username must be atleast 5 characters long and up to 15 charcters.\n";
+    } while (!(username.length() >= 5 && username.length() <= 15));
+
+    do {
+        cout << "Password: ";
+        cin >> password;
+        if (!(password.length() >= 5 && password.length() <= 15))
+            std::cout << "Password must be atleast 5 characters long and up to 15 charcters.\n";
+    } while (!(password.length() >= 5 && password.length() <= 15));
+    
     cout << "Email: ";
     cin >> email;
     cout << '\n';

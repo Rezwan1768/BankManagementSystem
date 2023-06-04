@@ -136,10 +136,12 @@
   <ItemGroup>
     <ClCompile Include="login.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="operations.cpp" />
     <ClCompile Include="setup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="login.h" />
+    <ClInclude Include="operations.h" />
     <ClInclude Include="setup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -8,6 +8,7 @@
 #include <cppconn/prepared_statement.h>
 #include "setup.h"
 #include "login.h"
+#include "operations.h"
 
 using std::cout;
 using std::cin;
@@ -27,17 +28,15 @@ int main()
      
         std::cout << "Enter your option: ";
         std::cin >> option;
-
+        std::string username;
         switch (option)
         {
         case 1:
             registerUser();
             break;
         case 2:
-            std::string username{};
             if(login(username))
             { 
-                std::cout << username << '\n';
                 int option{};
                 
                 do {
@@ -48,24 +47,17 @@ int main()
 
                     std::cout << "Enter your option: ";
                     std::cin >> option;
-                    std::string query;
-                    sql::ResultSet* result;
+                    int value{};
                     switch (option)
                     {
                     case 1:
-                        stmt = con->createStatement();
-                        query = "Select balance FROM users WHERE username = '" + username + "'";
-                        result = stmt->executeQuery(query);
-                        if (result->next())
-                        {
-                            int balance = result->getInt("balance");
-                            std::cout << "Balance: " << balance;
-                        }
-                        
+                        std::cout << "Your Balance: " << getBalance(username) << "\n\n";
                         break;
                     case 2:
+                        deposit(username);
                         break;
                     case 3:
+                        withdrawl(username);
                         break;
                     case 0:
                         break;
@@ -74,8 +66,9 @@ int main()
                     }
                 } while (option != 0);
             }
-
             break;
+        default:
+            std::cout << "Invalid option.\n\n";
         }
     } while (option != 0);
 
